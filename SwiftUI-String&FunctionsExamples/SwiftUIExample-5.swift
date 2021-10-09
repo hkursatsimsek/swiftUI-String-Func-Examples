@@ -11,24 +11,32 @@ import SwiftUI
 
 struct SwiftUIExample_5: View {
     @State var text = ""
-    @State var camelText = ""
-    @State var resutl = ""
-    @State var charArray = [String]()
-    
-    func toCamelString(text: String) -> String {
-        for i in stride(from: 0, to: text.count, by: 2) {
-            
-        }
-        return ""
-    }
+    @State var result = ""
+    @State var camelArray = [String]()
     
     var body: some View {
-        TextField("Text", text: $text)
-            .padding()
-            .multilineTextAlignment(.center)
-        
-        Button("toCamel") {
+        VStack{
+            TextField("Text", text: $text)
+                .padding()
+                .multilineTextAlignment(.center)
+                .autocapitalization(.none)
             
+            Button("toCamel") {
+                var sayac = 0
+                for element in text {
+                    if sayac % 2 == 0 {
+                        result += element.lowercased()
+                    } else {
+                        result += element.uppercased()
+                    }
+                    
+                    sayac += 1
+                }
+            }
+            
+            Text(result)
+                .padding()
+                .foregroundColor(Color.blue)
         }
         
         
